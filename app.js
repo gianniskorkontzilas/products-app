@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -7,7 +8,6 @@ app.use(express.json());
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger');
-
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(
