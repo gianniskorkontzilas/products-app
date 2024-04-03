@@ -4,7 +4,11 @@ const app = express();
 const port = 3000;
 const mongoose = require('mongoose');
 
+
+require('dotenv').config();
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger');
@@ -21,10 +25,12 @@ mongoose.connect(process.env.MONGODB_URI)
   }))
   
 const user = require('./routes/user.route');
+const product = require('./roots/product.root')
 const userProduct = require('./routes/user.products.routes')
 
 app.use('/', express.static('files'));
 app.use('/api/users', user)
+app.use('/api/products', product)
 app.use('/api/user-products', userProduct)
 
 app.use('/api-docs', 
